@@ -25,7 +25,8 @@
       ]
     },
     "content": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -38,11 +39,11 @@
       "target": "api::autor.autor",
       "inversedBy": "posts"
     },
-    "categoria": {
+    "categorias": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::categoria.categoria",
-      "inversedBy": "posts"
+      "mappedBy": "posts"
     }
   }
 }
