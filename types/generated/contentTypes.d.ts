@@ -829,6 +829,7 @@ export interface ApiCategoriaCategoria extends Schema.CollectionType {
     singularName: 'categoria';
     pluralName: 'categorias';
     displayName: 'categoria';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -837,7 +838,7 @@ export interface ApiCategoriaCategoria extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     posts: Attribute.Relation<
       'api::categoria.categoria',
-      'oneToMany',
+      'manyToMany',
       'api::post.post'
     >;
     createdAt: Attribute.DateTime;
@@ -872,16 +873,16 @@ export interface ApiPostPost extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
-    content: Attribute.Blocks;
+    content: Attribute.Blocks & Attribute.Required;
     slug: Attribute.UID<'api::post.post', 'title'> & Attribute.Required;
     autor: Attribute.Relation<
       'api::post.post',
       'manyToOne',
       'api::autor.autor'
     >;
-    categoria: Attribute.Relation<
+    categorias: Attribute.Relation<
       'api::post.post',
-      'manyToOne',
+      'manyToMany',
       'api::categoria.categoria'
     >;
     createdAt: Attribute.DateTime;
